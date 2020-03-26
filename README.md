@@ -87,6 +87,8 @@ root
  └── child3
 ```
 
+### AdvancedUsage
+
 ### API
 
 [https://godoc.org/github.com/YanxinTang/asciitree](https://godoc.org/github.com/YanxinTang/asciitree)
