@@ -1,6 +1,7 @@
 package asciitree
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"strings"
@@ -122,4 +123,11 @@ func (t *ASCIITree) Ancestors() []*ASCIITree {
 		return []*ASCIITree{}
 	}
 	return append(t.Parent.Ancestors(), t.Parent)
+}
+
+// String returns a string representation of the tree
+func (t *ASCIITree) String() string {
+	var buffer bytes.Buffer
+	t.PrintTree(&buffer)
+	return string(buffer.Bytes())
 }

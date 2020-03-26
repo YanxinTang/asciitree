@@ -115,10 +115,6 @@ func TestAncestors(t *testing.T) {
 }
 
 func TestPrintTree(t *testing.T) {
-	// type TestGroup struct {
-	// 	Data   *ASCIITree
-	// 	Result string
-	// }
 	basicTree := New(
 		"root",
 		New("child1"),
@@ -174,4 +170,24 @@ func diff(t *testing.T, tree *ASCIITree, filename string) {
 		t.Errorf("Couldn't open '%s', error: %v\n", filename, err)
 	}
 	assert.Equal(t, basicTreeWant, basicTreeGot.Bytes())
+}
+
+func TestString(t *testing.T) {
+	root := New("root",
+		New("1"),
+		New("2",
+			New("2.1"),
+			New("2.2"),
+		),
+		New("3"),
+	)
+	got := root.String()
+	want := `root
+ ├── 1
+ ├─┬ 2
+ │ ├── 2.1
+ │ └── 2.2
+ └── 3
+`
+	assert.Equal(t, want, got)
 }
