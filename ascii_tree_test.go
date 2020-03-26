@@ -13,7 +13,6 @@ import (
 )
 
 func init() {
-	fmt.Println("test")
 	rand.Seed(time.Now().UnixNano())
 }
 
@@ -190,4 +189,39 @@ func TestString(t *testing.T) {
  └── 3
 `
 	assert.Equal(t, want, got)
+}
+
+func TestMultiline(t *testing.T) {
+	NewMultiline := func(line string, times int, children ...*ASCIITree) *ASCIITree {
+		text := ""
+
+		for i := 0; i < times; i++ {
+			text += fmt.Sprintf("%s [#%d]", line, i)
+			if i < times-1 {
+				text += "\n"
+			}
+		}
+		return New(text, children...)
+	}
+
+	multi := NewMultiline("hello-child-A", 3,
+		New("child of multi",
+			NewMultiline("boom", 3),
+		),
+		New("multi\nline\nchild-of-multi"),
+	)
+	root := New("root",
+		New("hello",
+			multi,
+			NewMultiline("hello-child-B", 10),
+			New("just-a-node"),
+		),
+		New("world"),
+		New("boom",
+			New("trach",
+				NewMultiline("multi", 4),
+			),
+		),
+	)
+	diff(t, root, "multiline.expected.txt")
 }
