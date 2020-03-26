@@ -1,5 +1,5 @@
 /*
-Package asciitree render Ascii trees from an tree struct
+Package asciitree render Ascii trees from a tree struct
 
 It is a Golang implement of Javascript package which is https://www.npmjs.com/package/oo-ascii-tree/v/1.1.0
 
