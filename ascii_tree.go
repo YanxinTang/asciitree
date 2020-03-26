@@ -1,4 +1,4 @@
-package main
+package asciitree
 
 import (
 	"fmt"
@@ -6,17 +6,15 @@ import (
 	"strings"
 )
 
-/*
-ASCIITree is a tree node
-https://github.com/aws/jsii/blob/1ff25571a08652c59b23d6a2938dd3f426cd2665/packages/oo-ascii-tree/lib/ascii-tree.ts
-*/
+// ASCIITree is a tree node
 type ASCIITree struct {
-	Text     string
-	Parent   *ASCIITree
-	children []*ASCIITree
+	Text     string       // Node text
+	Parent   *ASCIITree   // Parent pointer. root node will get nil
+	children []*ASCIITree // Pointer set of hildern. root node will get empty slice
 }
 
 // New returns a pointer to an ASCIITree struct
+// @param text string node text
 func New(text string, children ...*ASCIITree) *ASCIITree {
 	tree := &ASCIITree{Text: text}
 	tree.Add(children...)
