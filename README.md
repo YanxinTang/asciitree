@@ -49,7 +49,7 @@ root
  └── child3 
 ```
 
-### Multiline support
+### Multiline Support
 
 ```go
 package main
@@ -74,6 +74,7 @@ func main() {
 	multiLineTree.PrintTree(os.Stdout)
 }
 ```
+Output:
 
 ```text
 root
@@ -87,7 +88,49 @@ root
  └── child3
 ```
 
-### AdvancedUsage
+### Advanced Usage
+
+```go
+package main
+
+import (
+	"os"
+
+	"github.com/YanxinTang/asciitree"
+)
+
+func main() {
+	TitleNode := func(text string, children ...*asciitree.ASCIITree) *asciitree.ASCIITree {
+		title := fmt.Sprintf("%s\n%s", strings.ToUpper(text), strings.Repeat("=", len(text)))
+		return asciitree.New(title, children...)
+	}
+
+	New := asciitree.New
+	titleTree := New(
+		"root",
+		TitleNode("child1"),
+		TitleNode("child2",
+			asciitree.New("grandchild1"),
+			asciitree.New("grandchild2"),
+		),
+		asciitree.New("child3"),
+	)
+	titleTree.PrintTree(os.Stdout)
+}
+```
+
+Output:
+
+```text
+root
+ ├── CHILD1
+ │   ======
+ ├─┬ CHILD2
+ │ │ ======
+ │ ├── grandchild1
+ │ └── grandchild2
+ └── child3
+```
 
 ### API
 
