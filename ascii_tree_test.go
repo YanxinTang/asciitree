@@ -89,7 +89,7 @@ func TestLevel(t *testing.T) {
 
 func TestEmpty(t *testing.T) {
 	notEmptyTree := ASCIITree{
-		children: []*ASCIITree{&ASCIITree{}},
+		children: []*ASCIITree{{}},
 	}
 	emptyTree := ASCIITree{}
 
